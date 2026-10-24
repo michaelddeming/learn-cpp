@@ -88,3 +88,56 @@ int main()
     return 0;
 }
 ```
+
+
+# 1.6 - Uninitialized Variables and Undefined Behavior
+
+- Uninitialized Variable: A variable that has not bee given a known value (through initialization or assignment).
+
+- Undefined Behavior: Executing code whose behavior is not well-defined by the C++ language.
+    - Printing an uninitialized variable that results in a garbage value.
+
+- Implementation-defined Behavior: Behavior that is defined by an **implementation**.
+    - Implementation: A specific compiler and the associated standary library it comes with.
+    - Using `sizeof` (number of bytes in a data type) on an `int` can product either 4 or 2 depending on the implementation. 
+
+- Unspecified Behavior: Behavior is left up to the implementation to define, but the implementation is not required to document the behavior.
+
+# 1.7 - Keywords and Naming Identifiers
+
+- C++ has 92 keywords
+![alt text](image-1.png)
+
+- Special Identifiers:
+    - `override`
+    - `final`
+    - `import`
+    - `module`
+
+# 1.8 - Whitespace and Basic Formatting
+
+- Whitespace: Characters that are used for formatting purposes. In C++, this refers primarily to spaces, tabs, and newlines. Whitespace in C++ is generally used for 3 things: separating certain language elements, inside text, and for formatting code.
+
+# 1.9 - Introduction to Literals and Operators
+
+- Literals: Values that are inserted directly into the source code. These values usually appear directly in the executable code (unless they are optimized out).
+
+- Operators: Characters that have special fucntionality in C++.
+
+- Operator Arity:
+    - Unary: operators act on one operand. 
+        - `-5`
+    - Binary: operators act on two operands.
+        - `5 + 5`
+    - Ternary: operators act on three operands.
+        - The **conditional** operator in C++
+    - Nullary: operatos act on zero operands.
+        - The `throw` operator.
+    
+# 1.10 - Introduction to Expression
+
+- Expression: A non-empty sequence of literals, variables, operators, and function calls that calculates a value.
+
+- Expression Statement: A statement that consists of an expression followed by a semicolon.
+
+# 1.11 - Developing Your First Program
