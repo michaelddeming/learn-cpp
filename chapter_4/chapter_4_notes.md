@@ -147,3 +147,47 @@ int main()
 
 # 4.10 - Introduction to `if` Statements
 
+- `if statement`: Execute one (or more) lines of code only if some condition is true.
+
+- Condition: is an expression that evaluates to a Boolean value.
+
+# 4.11 - Chars
+
+- `char`: Designed to hold a single character. 
+    - Characater: Can be a single letter, number, symbol, or whitespace.
+    - Integral type, the underlying value is stored as an integer.
+    - Integer stored by a `char` variable are interpreted as an ASCII character.
+
+- ASCII: American Standard Code for Information Interchange
+
+- `std::cin.get()` function does not ignore leading whitespace and will extract the whitespsace.
+
+- Escape Sequences: Starts with a `\` (backslash) character, and then a following letter or number.
+
+![alt text](image-7.png)
+
+- Multicharacter Literals: `char` literals that contain multiple characters ('56').
+    - Implementation defined by the compiler, recommended to avoid.
+
+- Unicode: Well-known character mapping other than ASCII, which maps over 144,000 integer to characters in many languages.
+    - Requires **32-bits** to represent characters (UTF-32).
+    - Unicode can also be encoded using 16-bit (UTF-16) or 8-bit (UTF-8) characters.
+
+- `char8_t`: Used to support UTF-8 characters
+- `char16_t`: Used to support UTF-16 characters
+- `char32_t`: Used to support UTF-32 characters
+- `wchar_t`: Used to support Windows API
+
+# 4.12 - Introduction to Type Conversion and `static_cast`
+
+- Type Conversion: The process of converting data from one type to another type.
+    - Implicit Type Conversion: When the compiler will convert a value for us.
+    - Type conversions produce a **new value**!
+        - The conversion takes in the variable as input and returns a temporary object that is the implicit type conversion of the input. 
+        - `const_cast` and `reinterpret_cast` do not return temporary objects, but instead reinterpret the type of the existing value or object.
+
+- Explicit Type Conversion: Allow us (the programmer) to explicitly tell the compiler to convert a value from one type to another type, and that we take full responsibility for the result of that conversion. 
+
+- `static_cast`: Operator used for explicit conversions.
+    - `static_cast<new_type>(expression)`
+    
