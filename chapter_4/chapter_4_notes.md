@@ -68,3 +68,82 @@
 ![alt text](image-3.png)
 
 
+# 4.6 - Fixed-width Integers and `size_t``
+
+- Fixed-width Integers: C++11 introduced a set of integer types that are guaranteed to be the same size on any architecture.
+    - Defined in the `<cstdint>` header.
+
+![alt text](image-4.png)
+
+- `std::int8_t` and `std::uint8_t` typically behave like `chars`.
+    - Fixed-width integers do not defined new types but instead are aliases for the compiler and standard library to determine which existing type is aliased.
+
+- The Fast Types: Provide the fastest signed/unsigned integer type with a width of at least # bits (where # = 8, 16, 32, or 64).
+    - `std::int_fast32_t` will give you the fastest signed integer type that’s at least 32-bits. By fastest, we mean the integral type that can be processed most quickly by the CPU.
+
+- The Least Types: Provide the smallest signed/unsigned integer type with a width of at least # bits (where # = 8, 16, 32, or 64). 
+    - `std::uint_least32_t` will give you the smallest unsigned integer type that’s at least 32-bits.
+
+- `std::size_t`: an alias for an implementation-defined unsigned integral type. It is used within the standard library to represent the byte-size or length of objects.
+    - `<cstddef>` header
+    - Guaranteed to be unsigned and at least 16 bits, but on most systems will be equivalent to the address-width of the application.
+        - 32-bit applications`std::size_t` will typically be a 32-bit unsigned integer.
+        - 64-bit application, `std::size_t` will typically be a 64-bit unsigned integer.
+    - Some compilers limit the largest creatable object to half the maximum value of `std::size_t`
+
+# 4.7 - Introduction to Scientfic Notation
+
+# 4.8 - Floating Point Numbers
+
+- Floating Point: Variable that can hold a number with a fractional component, such as 4320.0, -3.33, or 0.01226.
+    - Always signed.
+
+![alt text](image-5.png)
+
+- `long double` size varies and it may not use an `IEEE 754` compliant format.
+    - Avoid using `long double``
+
+- Floating point literals default to `double`.
+    - `f` suffix is used to denote a literal `float` type. 
+
+![alt text](image-6.png)
+
+- `std::cout` has 6 digits of precision for printing floating-point types. 
+    - Will switch to scientific notation at some point as the number precision grows.
+    - Can manipulate `std::cout` to output more precision by using an `output manipulator` function named `std::setprecision()``
+
+- Output Manipulators: Alter how data is output and is are defined in the `iomanip` header.
+    - Sticky, if you set them, they remain set.
+
+```cpp
+#include <iomanip> // for output manipulator std::setprecision()
+#include <iostream>
+
+int main()
+{
+    std::cout << std::setprecision(17); // show 17 digits of precision
+    std::cout << 3.33333333333333333333333333333333333333f <<'\n'; // f suffix means float
+    std::cout << 3.33333333333333333333333333333333333333 << '\n'; // no suffix means double
+
+    return 0;
+}
+/* output
+3.3333332538604736 float type less precision
+3.3333333333333335 double type more precision but still not enough to 17 digits!
+*/
+
+```
+
+- `Inf`: Represents infinity. Inf is signed, and can be positive (+Inf) or negative (-Inf).
+- `NaN`: stands for “Not a Number”. There are several different kinds of `NaN`.
+- Signed Zero: Separate representations for “positive zero” (+0.0) and “negative zero” (-0.0).
+
+# 4.9 - Boolean Values
+
+- Boolean Type: Boolean variables are variables that can have only two possible values: true, and false.
+
+- `std::boolalpha`: Output manipulator that outputs the booleans as "true" or "false".
+    - `std::noboolalpha` to turn it back off.
+
+# 4.10 - Introduction to `if` Statements
+
