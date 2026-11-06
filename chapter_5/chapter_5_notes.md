@@ -58,6 +58,67 @@
 - Use `const` variables to help the compiler predetermine variable status and improve compiler optimization.
 
 
+# 5.5 - Constant Expressions
+
+- `constexpr`: Variable constant type that requires an initializer that can be evaluated at compile-time. 
+
+```cpp
+int main()
+{
+    constexpr int x { expr }; // Because variable x is constexpr, expr must be evaluatable at compile-time
+}
+```
+
+- Compile-time Programming: The use of language features that result in compile-time evaluation.
+
+- Constant Expressions: An expression that must be evaluatable at compile-time, along with rules that determine how the compiler should handle these expressions.
+    - A non-empty sequence of literals, constant variables, operators, and function calls, all of which must be evaluatable at compile-time.
 
 
+# 5.6 - `constexpr` Variables
 
+- `constexpr`: A keyword used to specify that the variable is always a compile-time constant.
+    - Must be initialized with a constant expression, or result in compilation error.
+    - Can be used for **non-integral** types!
+
+# 5.7 - Introduction to `std::string`
+
+- `std::string`: Lives in the `<string>` header.
+    - Can handle strings of different lengths via dynamically allocated memory.
+
+- `std::getline()`: To read a full line of input into a string.
+    - Requires two arguments: 
+        1. `std::cin`
+            - use `std::cin >> std::ws` as the first arguement to ignore leading whitespace.
+        2. String variable.
+
+- `std::ws`: An **input manipulator**, tells `std::cin` to ignore any leading whitespace before extraction. 
+
+- Input Manipulator: Ways to alter how input is accepted.
+
+- When extracting to a variable, the extraction operator (`>>`) ignores leading whitespace. It stops extracting when encountering non-leading whitespace.
+    - `std::getline()` does not ignore leading whitespace. If you want it to ignore leading whitespace, pass `std::cin >> std::ws` as the first argument. It stops extracting when encountering a newline.
+
+- Member Functions: A special type of function that is nested within a class `std::string` (`std::string::length()`).
+    - Called with "dot" notation -> `my_string.length()`
+
+- `std::string.length()`: A member function for `std::string` that returns the length of the string (null-terminator excluded).
+    - Most likely returns a type `size_t`
+
+- We can create string literals with type `std::string` by using a `s` suffix after the double-quoted string literal. The `s` must be lower case.
+    - `std::literals::string_literals`
+
+```cpp
+#include <iostream>
+#include <string> // for std::string
+
+int main()
+{
+    using namespace std::string_literals; // easy access to the s suffix
+
+    std::cout << "foo\n";   // no suffix is a C-style string literal
+    std::cout << "goo\n"s;  // s suffix is a std::string literal
+
+    return 0;
+}
+``` 
