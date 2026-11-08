@@ -9,6 +9,9 @@
     - `const` next to the object type.
     - Must be initialized when defined!
 
+- Why use `const`/`constexpr` over `#define` symbolic constants?
+    - `#define` constants do not show up in the debugger and are more likely to have naming conflicts.
+
 - Type Qualifiers: A keyword that is applied to a type that modifies how that type behaves.
     - `const` is a **const type qualifier**.
     - C++23 has 2 type qualifers: 
@@ -122,3 +125,32 @@ int main()
     return 0;
 }
 ``` 
+
+# 5.8 - Introduction to `std::string_view`
+
+- `std::string` is expensive to initialize and copy.
+
+- `std::string_view`: Provides a **read-only** access to an *existing* string without making a copy!
+    - `<string_view>` header file.
+    - Suffix `sv` at the end of a string literal to default a string literal to a `string_view`
+    - `constexpr` supported
+- If needing to convert from `std::string_view` t `std::string` either:
+    1. Initialize a new `std:string` variable with a `std::string_view` initializer.
+    2. Expilicit type cast with `static_cast`
+
+# 5.9 - `std::string_view` (part 2)
+
+- A view is dependent on the object being viewed. If the object being viewed is modified or destroyed while the view is still being used, unexpected or undefined behavior will result.
+    - Dangling View: A `std::string_view` that is viewing a string that has already been destroyed.
+
+- The *view* itself can be modified for how much we get to view (close the curtains on window). DOES NOT MODIFY THE STRING BEING VIEWED, JUST THE VIEW ITSELF.
+    - Member Function:  
+        - `remove_prefix(int x)`: remove x characters from the begining of the view.
+        - `remove_suffix(int x)`: remove x character from the end of the view.
+    - Once called the view is **modified** and to reset the view must be reassigned to the string.
+    - Causes some `string_view` to be not null terminated with the suffix is removed.
+        - Conver the `string_view` into a string to get null termianation.
+
+
+
+    
