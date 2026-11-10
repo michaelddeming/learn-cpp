@@ -110,7 +110,7 @@
 
 - `std::cout` has 6 digits of precision for printing floating-point types. 
     - Will switch to scientific notation at some point as the number precision grows.
-    - Can manipulate `std::cout` to output more precision by using an `output manipulator` function named `std::setprecision()``
+    - Can manipulate `std::cout` to output more precision by using an `output manipulator` function named `std::setprecision()`
 
 - Output Manipulators: Alter how data is output and is are defined in the `iomanip` header.
     - Sticky, if you set them, they remain set.
