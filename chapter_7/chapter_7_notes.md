@@ -189,3 +189,76 @@ int main()
 
 # 7.6 - Internal Linkage
 
+- Internal Linkage: Can be seen and used within a single translation unit, but is NOT accessible from other translation units.
+
+- `static` keyword when applied to a global non-constant variable is given internal linkage. 
+
+- Storage Class Specifier: Keywords that set both the linkage and storage duration of a variable. 
+    - `static`, `extern`, `mutable``
+
+- Best Practice: 
+    - Give identifiers internal linkage when you have an explicit reason to disallow access from other files.
+    - Consider giving all identifiers you don’t want accessible to other files internal linkage (use an unnamed namespace for this).
+
+# 7.7 - External Linkage and Variable Forward Declarations
+
+- Functions have external linkage by default.
+
+- Forward Declaration: Tells the compiler about the existence of the function, and the linker connects the function calls to the actual function defintion. 
+
+- `extern` keyword is used to allow `const` derived variables becomes external variables (external linkage).
+    - Also used to **forward declare** external variables defined in other files.
+
+```cpp
+int g_x { 2 }; // non-constant globals are external by default (no need to use extern)
+
+extern const int g_y { 3 }; // const globals can be defined as extern, making them external
+extern constexpr int g_z { 3 }; // constexpr globals can be defined as extern, making them external (but this is pretty useless, see the warning in the next section)
+
+int main()
+{
+    return 0;
+}
+```
+
+
+```cpp
+#include <iostream>
+
+extern int g_x;       // this extern is a forward declaration of a variable named g_x that is defined somewhere else
+extern const int g_y; // this extern is a forward declaration of a const variable named g_y that is defined somewhere else
+
+int main()
+{
+    std::cout << g_x << ' ' << g_y << '\n'; // prints 2 3
+
+    return 0;
+}
+```
+
+```cpp
+// non-constant
+int g_x;        // variable definition (no initializer)
+int g_x { 1 };  // variable definition (w/ initializer)
+extern int g_x; // forward declaration (no initializer)
+
+// constant
+extern const int g_y { 1 }; // variable definition (const requires initializers)
+extern const int g_y;       // forward declaration (no initializer)
+```
+
+# Quiz
+
+1. 
+    - Scope: Where the variable is accessible.
+    - Duration: Where the variable is created and destroyed.
+    - Linkage: Ability to access the variable in other files.
+    - Global Variables:
+        - Scope: Global/File Scope
+        - Duration: Created at the start of program and destroyed at the end.
+        - Linkage: By default external, can have internal with static.
+
+# 7.8 - Why (non-const) Global Variables are Evil
+
+# 7.9 - Inline Functions and Variables
+
